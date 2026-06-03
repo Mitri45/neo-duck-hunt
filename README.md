@@ -38,14 +38,6 @@ pnpm test
 pnpm build
 ```
 
-Generate social/meta images after changing visual identity or source art:
-
-```bash
-pnpm meta:images
-```
-
-The generator writes `public/og-image.png`, `public/apple-touch-icon.png`, and `public/icon-512.png` from existing game art.
-
 ## Hosting
 
 The app is a static Vite build:

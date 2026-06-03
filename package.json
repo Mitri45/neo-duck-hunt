@@ -14,14 +14,7 @@
     "dev": "vite --host 0.0.0.0",
     "build": "tsc -b && vite build",
     "preview": "vite preview --host 0.0.0.0",
-    "test": "vitest run",
-    "meta:images": "node scripts/generate-meta-images.mjs",
-    "generate:sfx": "node scripts/generate-sfx.mjs",
-    "assets:key-png": "node scripts/key-and-crop-png.mjs",
-    "assets:split-muzzle": "node scripts/split-muzzle-flash-sheet.mjs",
-    "assets:images:dry-run": "node scripts/generate-images-codex.mjs --dry-run",
-    "assets:images": "node scripts/generate-images-codex.mjs",
-    "assets:select-defaults": "node scripts/select-default-assets.mjs"
+    "test": "vitest run"
   },
   "dependencies": {
     "@mediapipe/tasks-vision": "^0.10.35",
@@ -29,8 +22,6 @@
   },
   "devDependencies": {
     "@types/node": "^25.9.1",
-    "@types/pngjs": "^6.0.5",
-    "pngjs": "^7.0.0",
     "typescript": "^6.0.3",
     "vite": "^8.0.14",
     "vitest": "^4.1.7"
