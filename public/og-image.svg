@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="shade" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#06151f" stop-opacity="0.82"/>
+      <stop offset="0.52" stop-color="#071922" stop-opacity="0.24"/>
+      <stop offset="1" stop-color="#07100b" stop-opacity="0.72"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="10" dy="12" stdDeviation="0" flood-color="#111111" flood-opacity="0.38"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="630" fill="#65b8f6"/>
+  <image href="./assets/images/range-background.png" x="0" y="-36" width="1200" height="675" preserveAspectRatio="xMidYMid slice"/>
+  <rect width="1200" height="630" fill="url(#shade)"/>
+  <rect x="54" y="62" width="606" height="316" fill="#0b1b22" opacity="0.78" stroke="#fff0a8" stroke-width="6"/>
+  <rect x="70" y="78" width="574" height="284" fill="none" stroke="#2d7f4c" stroke-width="3" opacity="0.82"/>
+  <text x="88" y="162" font-family="Courier New, monospace" font-size="72" font-weight="900" fill="#ffe65e" stroke="#151812" stroke-width="4" paint-order="stroke">NEO DUCK</text>
+  <text x="88" y="240" font-family="Courier New, monospace" font-size="72" font-weight="900" fill="#ffe65e" stroke="#151812" stroke-width="4" paint-order="stroke">HUNT</text>
+  <text x="92" y="304" font-family="Courier New, monospace" font-size="28" font-weight="900" fill="#bdf8ff" stroke="#111111" stroke-width="2" paint-order="stroke">FINGER AIM. MOUTH TRIGGER.</text>
+  <text x="92" y="344" font-family="Courier New, monospace" font-size="22" font-weight="800" fill="#fff4bd">ndh.madeby.dev</text>
+  <image href="./assets/images/duck-evasive.png" x="690" y="72" width="360" height="360" preserveAspectRatio="xMidYMid meet" filter="url(#shadow)"/>
+  <g transform="translate(884 332)" opacity="0.96">
+    <circle r="46" fill="none" stroke="#ffffff" stroke-width="8"/>
+    <path d="M-82 0H82M0-82V82" stroke="#ffffff" stroke-width="8" stroke-linecap="square"/>
+    <circle r="8" fill="#ffe65e"/>
+  </g>
+  <rect x="0" y="584" width="1200" height="26" fill="#111510" opacity="0.66"/>
+  <text x="54" y="610" font-family="Courier New, monospace" font-size="18" font-weight="900" fill="#fff0a8">WEBCAM TRACKING • REACTIVE DUCKS • PIXEL ARCADE</text>
+</svg>

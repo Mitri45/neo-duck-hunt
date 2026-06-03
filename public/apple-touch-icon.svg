@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="72" fill="#65b8f6"/>
+  <image href="./assets/images/range-background.png" x="-156" y="0" width="824" height="512" preserveAspectRatio="xMidYMid slice"/>
+  <rect width="512" height="512" rx="72" fill="#071922" opacity="0.22"/>
+  <image href="./assets/images/duck-normal.png" x="86" y="78" width="340" height="340" preserveAspectRatio="xMidYMid meet"/>
+  <circle cx="338" cy="250" r="58" fill="none" stroke="#ffffff" stroke-width="12"/>
+  <path d="M236 250h204M338 148v204" stroke="#ffffff" stroke-width="12" stroke-linecap="square"/>
+  <circle cx="338" cy="250" r="11" fill="#ffe65e"/>
+</svg>

@@ -1,0 +1,22 @@
+{
+  "name": "Neo Duck Hunt",
+  "short_name": "Neo Hunt",
+  "description": "A webcam-controlled pixel arcade hunt: aim with your finger and open your mouth to shoot.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#65b8f6",
+  "theme_color": "#65b8f6",
+  "icons": [
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
