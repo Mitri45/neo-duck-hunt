@@ -1,3 +1,4 @@
+import "pixi.js/unsafe-eval";
 import { Application, Assets, Container, Graphics, Rectangle, Sprite, Text, Texture } from "pixi.js";
 import type { AimState, Duck, GestureState, InputMode, Point, Rect, SupervisorDecision } from "../domain/types";
 import { CameraHandTracker } from "../input/cameraHandTracker";
