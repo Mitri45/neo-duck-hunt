@@ -573,56 +573,11 @@ export class NeoDuckHuntApp {
     const bounds = this.bounds();
     this.overlayLayer.removeChildren();
     this.foregroundLayer.removeChildren();
-    this.drawBackground(bounds);
     this.drawForegroundGrass(bounds);
     this.drawRoboRetriever(bounds);
     this.drawCrosshair();
     this.drawCalibrationShot(bounds);
     this.drawCameraOverlay();
-  }
-
-  private drawBackground(bounds: Rect): void {
-    let bg = this.stage.getChildByLabel?.("background");
-    const texture = this.textures.background;
-
-    if (texture && !(bg instanceof Sprite)) {
-      if (bg) {
-        this.stage.removeChild(bg);
-        bg.destroy();
-      }
-      const sprite = new Sprite(texture);
-      sprite.label = "background";
-      this.stage.addChildAt(sprite, 0);
-      bg = sprite;
-    }
-
-    if (!bg) {
-      if (texture) {
-        const sprite = new Sprite(texture);
-        sprite.label = "background";
-        this.stage.addChildAt(sprite, 0);
-        bg = sprite;
-      } else {
-        const graphics = new Graphics();
-        graphics.label = "background";
-        this.stage.addChildAt(graphics, 0);
-        bg = graphics;
-      }
-    }
-
-    if (bg instanceof Sprite) {
-      bg.width = bounds.width;
-      bg.height = bounds.height;
-    } else if (bg instanceof Graphics) {
-      bg.clear();
-      bg.rect(0, 0, bounds.width, bounds.height).fill(0x70b7ff);
-      bg.rect(0, bounds.height * 0.58, bounds.width, bounds.height * 0.42).fill(0x6cbf4f);
-      bg.rect(0, bounds.height * 0.74, bounds.width, bounds.height * 0.26).fill(0xd9b05f);
-      for (let i = 0; i < 8; i += 1) {
-        const x = (i / 7) * bounds.width;
-        bg.circle(x, bounds.height * 0.58 + Math.sin(i) * 18, 90 + (i % 3) * 18).fill(0x4f9f3c);
-      }
-    }
   }
 
   private drawCrosshair(): void {
@@ -800,34 +755,18 @@ export class NeoDuckHuntApp {
 
   private drawForegroundGrass(bounds: Rect): void {
     const texture = this.textures.background;
-    const foregroundTop = bounds.height * 0.58;
-    if (texture) {
-      const sprite = new Sprite(texture);
-      sprite.width = bounds.width;
-      sprite.height = bounds.height;
-      const mask = new Graphics();
-      mask.rect(0, foregroundTop, bounds.width, bounds.height - foregroundTop).fill(0xffffff);
-      sprite.mask = mask;
-      this.foregroundLayer.addChild(sprite, mask);
+    if (!texture) {
       return;
     }
 
-    const g = new Graphics();
-    const grassTop = bounds.height * 0.68;
-    g.rect(0, grassTop + 34, bounds.width, bounds.height - grassTop).fill({ color: 0x245f1d, alpha: 0.7 });
-    g.rect(0, grassTop + 92, bounds.width, bounds.height - grassTop).fill({ color: 0xa66c25, alpha: 0.68 });
-
-    for (let x = -8; x < bounds.width + 8; x += 9) {
-      const hash = Math.sin(x * 12.9898) * 43758.5453;
-      const wave = hash - Math.floor(hash);
-      const bladeHeight = 20 + wave * 36;
-      const rootY = grassTop + 36 + Math.sin(x * 0.04) * 7;
-      const sway = (wave - 0.5) * 16;
-      const color = wave > 0.62 ? 0xb7e13b : wave > 0.32 ? 0x45a72f : 0x1c6a25;
-      g.moveTo(x, rootY).lineTo(x + sway, rootY - bladeHeight).stroke({ width: 3, color, alpha: 0.76 });
-    }
-
-    this.foregroundLayer.addChild(g);
+    const foregroundTop = bounds.height * 0.58;
+    const sprite = new Sprite(texture);
+    sprite.width = bounds.width;
+    sprite.height = bounds.height;
+    const mask = new Graphics();
+    mask.rect(0, foregroundTop, bounds.width, bounds.height - foregroundTop).fill(0xffffff);
+    sprite.mask = mask;
+    this.foregroundLayer.addChild(sprite, mask);
   }
 
   private drawCameraOverlay(): void {
