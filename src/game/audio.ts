@@ -21,14 +21,16 @@ export class GameAudio {
 
   preload(): void {
     for (const [name, src] of Object.entries(AUDIO_FILES) as Array<[SfxName, string]>) {
-      const audio = new Audio(src);
+      const audio = new Audio();
       audio.preload = "auto";
+      audio.src = src;
       this.elements.set(name, audio);
     }
-    this.musicAudio = new Audio("/assets/audio/music.wav");
+    this.musicAudio = new Audio();
     this.musicAudio.loop = true;
     this.musicAudio.volume = 0.65;
-    this.musicAudio.preload = "auto";
+    this.musicAudio.preload = "none";
+    this.musicAudio.src = "/assets/audio/music.wav";
   }
 
   unlock(): void {

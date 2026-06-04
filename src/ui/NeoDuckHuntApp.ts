@@ -162,8 +162,6 @@ export class NeoDuckHuntApp {
     this.createDom();
     window.removeEventListener("keydown", this.handleKeyDown);
     window.addEventListener("keydown", this.handleKeyDown);
-    this.audio.preload();
-
     const pixi = new Application();
     await pixi.init({
       resizeTo: this.root,
@@ -179,10 +177,10 @@ export class NeoDuckHuntApp {
     this.stage.addChild(this.duckLayer, this.foregroundLayer, this.overlayLayer);
     this.detachMouse = this.mouseInput.attach(pixi.canvas);
 
-    await this.loadTextures();
     this.drawScene();
     this.showStartScreen(START_PROMPT);
     pixi.ticker.add((ticker) => this.tick(ticker.deltaMS));
+    void this.loadTextures();
   }
 
   private createDom(): void {
@@ -284,8 +282,10 @@ export class NeoDuckHuntApp {
   }
 
   private async loadTextures(): Promise<void> {
+    await this.loadTexture("background", "/assets/images/range-background.webp");
+    this.audio.preload();
+
     const entries = {
-      background: "/assets/images/range-background.png",
       duckNormal: "/assets/images/duck-normal.png",
       duckEvasive: "/assets/images/duck-evasive.png",
       duckHit: "/assets/images/duck-hit.png",
@@ -296,15 +296,17 @@ export class NeoDuckHuntApp {
       roboDogRetrieveSheet: "/assets/images/robo-dog-retrieve-sheet.png",
     };
 
-    for (const [key, src] of Object.entries(entries)) {
-      try {
-        this.textures[key] = await Assets.load(src);
-      } catch {
-        this.textures[key] = null;
-      }
-    }
+    await Promise.all(Object.entries(entries).map(([key, src]) => this.loadTexture(key, src)));
 
     this.roboRetrieverFrames = this.createTextureFrames(this.textures.roboDogRetrieveSheet, ROBO_RETRIEVE_FRAME_COUNT);
+  }
+
+  private async loadTexture(key: string, src: string): Promise<void> {
+    try {
+      this.textures[key] = await Assets.load(src);
+    } catch {
+      this.textures[key] = null;
+    }
   }
 
   private async startCameraMode(): Promise<void> {
@@ -581,8 +583,20 @@ export class NeoDuckHuntApp {
 
   private drawBackground(bounds: Rect): void {
     let bg = this.stage.getChildByLabel?.("background");
+    const texture = this.textures.background;
+
+    if (texture && !(bg instanceof Sprite)) {
+      if (bg) {
+        this.stage.removeChild(bg);
+        bg.destroy();
+      }
+      const sprite = new Sprite(texture);
+      sprite.label = "background";
+      this.stage.addChildAt(sprite, 0);
+      bg = sprite;
+    }
+
     if (!bg) {
-      const texture = this.textures.background;
       if (texture) {
         const sprite = new Sprite(texture);
         sprite.label = "background";
